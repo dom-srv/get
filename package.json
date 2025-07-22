@@ -1,15 +1,13 @@
 {
-    "name": "ws",
-    "version": "1.0.0",
-    "description": "ssim/",
-    "main": "server.js",
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "ws": "^8.0.0"
-    },
-    "engines": {
-        "node": ">=14.0.0"
-    }
+  "name": "5y64",
+  "version": "4",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "discord.js-selfbot-v13": "^1.1.18",
+    "@discordjs/voice": "^0.14.0",
+    "dotenv": "^16.1.4"
+  }
 }
