@@ -1,18 +1,34 @@
-const A = require('crypto');
-const B = require('ws');
-const C = new B['Server']({ port: 0xbb8 });
-const D = new Set([
-    A.createHash('sha256').update('GSNqxxeoywYVycSCHVRKWrxHMnuAUWDsaFieUlEiCqQiE').digest('hex'),
-    A.createHash('sha256').update('RvafRQkFKOUXarKDOfdViYZXyyxIfLnxlgGJQCnKNFPwv').digest('hex'),
-    A.createHash('sha256').update('hjNmeOsrDwShTZWzgVPqnxbLHgGeOGextFodMqNdAMpUX').digest('hex'),
-    A.createHash('sha256').update('roBnRwiwtpojhtaTCqeNecpZUKHyinHpmREbkXyuyDUTV').digest('hex')
-]);
-const E = (F) => A.createHash('sha256').update(F).digest('hex');
-C['on']('connection', G => {
-    G['on']('message', H => {
-        const I = JSON['parse'](H);
-        const J = E(I['user']);
-        const K = D['has'](J) ? Buffer.from('BCC').toString('base64') : Buffer.from('BCCD').toString('hex');
-        G['send'](JSON['stringify']({ status: K }));
+require("dotenv").config();
+const { Client } = require("discord.js-selfbot-v13");
+const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
+const client = new Client();
+const voiceChannelId = "1397149731205021736";
+const guildId = "1258074801139089418";
+function connectToVC() {
+  try {
+    joinVoiceChannel({
+      channelId: voiceChannelId,
+      guildId: guildId,
+      adapterCreator: client.guilds.cache.get(guildId).voiceAdapterCreator,
+      selfMute: false,
+      selfDeaf: false
     });
+    console.log("🎙️ Joined voice channel successfully");
+  } catch (err) {
+    console.error("❌ Failed to join voice channel:", err);
+  }
+}
+client.on("ready", () => {
+  console.log(`✅ Logged in as ${client.user.tag}`);
+  connectToVC();
 });
+setInterval(() => {
+  const connection = getVoiceConnection(guildId);
+  if (!connection || connection.state.status === "disconnected") {
+    console.log("🔌 Voice connection lost. Attempting to reconnect in 5 seconds...");
+    setTimeout(() => {
+      connectToVC();
+    }, 5000);
+  }
+}, 10000);
+client.login(process.env.DISCORD_TOKEN);
