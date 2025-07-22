@@ -1,18 +1,13 @@
 {
-  "name": "nodejs",
-  "version": "4.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "Getg",
   "dependencies": {
+    "@discordjs/voice": "^0.18.0",
     "@types/node": "^22.13.11",
     "discord.js-selfbot-v13": "^3.7.0",
     "dotenv": "^17.2.0",
     "ws": "^8.18.3"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
