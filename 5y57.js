@@ -1,6 +1,13 @@
 require("dotenv").config();
 const { Client } = require("discord.js-selfbot-v13");
 const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
+const express = require("express");
+const app = express();
+app.get("/", (req, res) => res.send("Selfbot is running"));
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", () => {
+  console.log(`HTTP server running on port ${port}`);
+});
 const c = new Client();
 const gId = "1397403162511409192";
 const vId = "1397403830559178814";
