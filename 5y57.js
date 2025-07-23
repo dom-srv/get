@@ -2,8 +2,8 @@ require("dotenv").config();
 const { Client } = require("discord.js-selfbot-v13");
 const { joinVoiceChannel, getVoiceConnection } = require("@discordjs/voice");
 const c = new Client();
-const gId = "1258074801139089418";
-const vId = "1397149731205021736";
+const gId = "1397403162511409192";
+const vId = "1397403830559178814";
 const vc = () => {
   const g = c.guilds.cache.get(gId);
   if (!g) return;
