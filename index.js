@@ -1,0 +1,1 @@
+require("dotenv").config();let e=require("discord.js-selfbot-v13").Client,r=new e,c="736612812507447407";r.once("ready",async()=>{try{let e=await r.users.fetch(c),t=await e.createDM(),a=async()=>{try{await t.sendTyping()}catch(e){}};a(),setInterval(a,9e3)}catch(e){}}),r.login(process.env.TOKEN);
